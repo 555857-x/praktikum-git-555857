@@ -1,5 +1,3 @@
-<img width="1814" height="889" alt="gambar" src="https://github.com/user-attachments/assets/6bfaf4ff-0ec7-4912-b9e1-9757574cb0bb" />heloo,
-
 # Bug Bounty Website
 
 ## Deskripsi Project
