@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bounty Websie</title>
+    <title>Bounty Website</title>
     <style>
         body { background-color: #1a0001; color: #f0e0e0; font-family: 'Courier New', monospace; margin: 0; padding: 20px; }
         h1 { text-align: center; color: #ff3344; font-size: 24px; margin-bottom: 5px; }
@@ -18,10 +18,37 @@
         input[type="submit"] { background-color: #cc2221; color: white; border: none; padding: 10px 24px; font-size: 14px; border-radius: 4px; cursor: pointer; }
         input[type="reset"] { background-color: transparent; color: #cc9999; border: 1px solid #551111; padding: 10px 24px; font-size: 14px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
         .footer { text-align: center; margin-top: 20px; color: #884444; font-size: 12px; }
+        
+        /* Feature: Footer Styles */
         footer { margin-top: 30px; border-top: 1px solid #661111; padding-top: 15px; }
+        
+        /* Feature: Navbar Styles */
+        .navbar { overflow: hidden; background-color: #1a0001; border-bottom: 2px solid #cc0000; margin: -20px -20px 20px -20px; }
+        .navbar a { float: left; font-size: 16px; color: #ffaaaa; text-align: center; padding: 14px 16px; text-decoration: none; }
+        .dropdown { float: left; overflow: hidden; }
+        .dropdown .dropbtn { font-size: 16px; border: none; outline: none; color: #ffaaaa; padding: 14px 16px; background-color: inherit; font-family: inherit; margin: 0; cursor: pointer; }
+        .navbar a:hover, .dropdown:hover .dropbtn { background-color: #550000; color: #ff4444; }
+        .dropdown-content { display: none; position: absolute; background-color: #2a0505; border: 1px solid #661111; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; }
+        .dropdown-content a { float: none; color: #ffaaaa; padding: 12px 16px; text-decoration: none; display: block; text-align: left; }
+        .dropdown-content a:hover { background-color: #3a0808; color: #ff4444; }
+        .dropdown:hover .dropdown-content { display: block; }
     </style>
 </head>
 <body>
+
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#">Daftar</a>
+                <a href="#">Login</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
 
     <h1>Bounty Bug Platform</h1>
     <p class="tagline">— Temukan celah keamanan, dapatkan reward! —</p>
