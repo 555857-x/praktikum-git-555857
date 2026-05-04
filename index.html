@@ -134,24 +134,59 @@
             font-size: 12px;
         }
 
-        /* navbar */
-        .navbar { overflow: hidden; background-color: #333; margin: -20px -20px 20px -20px; }
-        .navbar a { float: left; font-size: 16px; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
-        .dropdown { float: left; overflow: hidden; }
-        .dropdown .dropbtn { font-size: 16px; border: none; outline: none; color: white; padding: 14px 16px; background-color: inherit; font-family: inherit; margin: 0; cursor: pointer; }
-        .navbar a:hover, .dropdown:hover .dropbtn { background-color: red; }
-        .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; }
-        .dropdown-content a { float: none; color: black; padding: 12px 16px; text-decoration: none; display: block; text-align: left; }
-        .dropdown-content a:hover { background-color: #ddd; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* ✅ PERUBAHAN BARU: style pesan error validasi password */
-        .error-msg {
-            color: #ff4444;
-            font-size: 11px;
-            margin-top: 4px;
-            display: none;
+        /* ✅ PERUBAHAN: navbar disesuaikan dengan tema dark-red platform */
+        .navbar {
+            overflow: hidden;
+            background-color: #1a0001;          /* ← was: #333 */
+            border-bottom: 2px solid #cc0000;   /* ← NEW: garis merah bawah */
+            margin: -20px -20px 20px -20px;
         }
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: #ffaaaa;                     /* ← was: white */
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .dropdown { float: left; overflow: hidden; }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: #ffaaaa;                     /* ← was: white */
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            cursor: pointer;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #550000;          /* ← was: red */
+            color: #ff4444;                     /* ← NEW: teks merah terang saat hover */
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2a0505;          /* ← was: #f9f9f9 */
+            border: 1px solid #661111;          /* ← NEW: border merah gelap */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: #ffaaaa;                     /* ← was: black */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #3a0808;          /* ← was: #ddd */
+            color: #ff4444;                     /* ← NEW */
+        }
+        .dropdown:hover .dropdown-content { display: block; }
     </style>
 </head>
 <body>
@@ -189,8 +224,7 @@
             </p>
         </div>
 
-        <!-- ✅ PERUBAHAN: tambah id dan onsubmit handler pada form -->
-        <form id="registrationForm" onsubmit="return validateForm(event)">
+        <form>
 
             <div class="field">
                 <label>Username</label>
@@ -211,15 +245,11 @@
             <div class="row">
                 <div class="field">
                     <label>Password</label>
-                    <!-- ✅ PERUBAHAN: tambah id="password" -->
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" required>
                 </div>
                 <div class="field">
                     <label>Konfirmasi Password</label>
-                    <!-- ✅ PERUBAHAN: tambah id + oninput handler -->
-                    <input type="password" name="konfirmasi_password" id="konfirmasi_password" required oninput="checkMatch()">
-                    <!-- ✅ PERUBAHAN BARU: pesan error muncul jika password tidak cocok -->
-                    <div class="error-msg" id="match-error">⚠ Password tidak cocok!</div>
+                    <input type="password" name="konfirmasi_password" required>
                 </div>
             </div>
 
@@ -273,27 +303,6 @@
 <footer>
     <p>© 2026 Web Saya</p>
 </footer>
-
-    <!-- ✅ PERUBAHAN BARU: JS validasi password cocok secara real-time & saat submit -->
-    <script>
-        function checkMatch() {
-            const pw  = document.getElementById('password').value;
-            const cpw = document.getElementById('konfirmasi_password').value;
-            const err = document.getElementById('match-error');
-            err.style.display = (cpw && pw !== cpw) ? 'block' : 'none';
-        }
-
-        function validateForm(e) {
-            const pw  = document.getElementById('password').value;
-            const cpw = document.getElementById('konfirmasi_password').value;
-            if (pw !== cpw) {
-                e.preventDefault();
-                document.getElementById('match-error').style.display = 'block';
-                return false;
-            }
-            return true;
-        }
-    </script>
 
 </body>
 </html>
