@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>heloo</title>
+    <title>helo</title>
     <style>
         body {
             background-color: #1a0001;
@@ -145,28 +145,12 @@
         .dropdown-content a:hover { background-color: #ddd; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* ✅ PERUBAHAN BARU: password wrapper untuk toggle button */
-        .password-wrapper {
-            position: relative;
-        }
-        .password-wrapper input {
-            padding-right: 38px;
-        }
-        .toggle-password {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #cc9999;
-            cursor: pointer;
-            font-size: 14px;
-            padding: 0;
-            line-height: 1;
-        }
-        .toggle-password:hover {
+        /* ✅ PERUBAHAN BARU: style pesan error validasi password */
+        .error-msg {
             color: #ff4444;
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
         }
     </style>
 </head>
@@ -205,7 +189,8 @@
             </p>
         </div>
 
-        <form>
+        <!-- ✅ PERUBAHAN: tambah id dan onsubmit handler pada form -->
+        <form id="registrationForm" onsubmit="return validateForm(event)">
 
             <div class="field">
                 <label>Username</label>
@@ -224,20 +209,17 @@
             </div>
 
             <div class="row">
-                <!-- ✅ PERUBAHAN: bungkus dalam .password-wrapper + tombol toggle -->
                 <div class="field">
                     <label>Password</label>
-                    <div class="password-wrapper">
-                        <input type="password" name="password" id="password" required>
-                        <button type="button" class="toggle-password" onclick="toggleVisibility('password', this)">👁</button>
-                    </div>
+                    <!-- ✅ PERUBAHAN: tambah id="password" -->
+                    <input type="password" name="password" id="password" required>
                 </div>
                 <div class="field">
                     <label>Konfirmasi Password</label>
-                    <div class="password-wrapper">
-                        <input type="password" name="konfirmasi_password" id="konfirmasi_password" required>
-                        <button type="button" class="toggle-password" onclick="toggleVisibility('konfirmasi_password', this)">👁</button>
-                    </div>
+                    <!-- ✅ PERUBAHAN: tambah id + oninput handler -->
+                    <input type="password" name="konfirmasi_password" id="konfirmasi_password" required oninput="checkMatch()">
+                    <!-- ✅ PERUBAHAN BARU: pesan error muncul jika password tidak cocok -->
+                    <div class="error-msg" id="match-error">⚠ Password tidak cocok!</div>
                 </div>
             </div>
 
@@ -292,17 +274,24 @@
     <p>© 2026 Web Saya</p>
 </footer>
 
-    <!-- ✅ PERUBAHAN BARU: fungsi JS toggle visibility password -->
+    <!-- ✅ PERUBAHAN BARU: JS validasi password cocok secara real-time & saat submit -->
     <script>
-        function toggleVisibility(fieldId, btn) {
-            const input = document.getElementById(fieldId);
-            if (input.type === 'password') {
-                input.type = 'text';
-                btn.textContent = '🙈';
-            } else {
-                input.type = 'password';
-                btn.textContent = '👁';
+        function checkMatch() {
+            const pw  = document.getElementById('password').value;
+            const cpw = document.getElementById('konfirmasi_password').value;
+            const err = document.getElementById('match-error');
+            err.style.display = (cpw && pw !== cpw) ? 'block' : 'none';
+        }
+
+        function validateForm(e) {
+            const pw  = document.getElementById('password').value;
+            const cpw = document.getElementById('konfirmasi_password').value;
+            if (pw !== cpw) {
+                e.preventDefault();
+                document.getElementById('match-error').style.display = 'block';
+                return false;
             }
+            return true;
         }
     </script>
 
